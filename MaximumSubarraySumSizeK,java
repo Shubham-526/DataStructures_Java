@@ -1,0 +1,31 @@
+import java.util.*;
+
+class MaximumSubarraySumSizeK {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int k = sc.nextInt();
+        int arr[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        System.out.println(maximumSubarraySumSizeK(arr, n, k));
+        sc.close();
+    }
+
+    static int maximumSubarraySumSizeK(int[] arr, int n, int k) {
+        int sum=0;
+        int j=0;
+        for(int i =0; i<k; i++){
+            sum+= arr[i];
+        }
+        int maxSum = sum;
+        while(j+k<n){
+            int windowSum = sum - arr[j] + arr[j+k];
+            sum = windowSum;
+            maxSum = Math.max(maxSum, windowSum);
+            j++;
+        }
+        return maxSum;
+    }
+}
